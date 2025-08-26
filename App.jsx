@@ -1,0 +1,53 @@
+import React from 'react;
+import './App.css'
+
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+
+import {useAuthState} from 'react-firebase-hooks/auth';
+import {useAuthState} from 'react-firebase-hooks/firestore';
+
+firebase.initializeApp({
+        apiKey: "AIzaSyCUeHXo56GsPPD0c-fVzcz1viehYfFBho8",
+    authDomain: "neoend-206b3.firebaseapp.com",
+    projectId: "neoend-206b3",
+    storageBucket: "neoend-206b3.firebasestorage.app",
+    messagingSenderId: "925556064601",
+    appId: "1:925556064601:web:d474854fbe845b37a4cc48",
+    measurementId: "G-2X8LDQVJFG" 
+})
+
+
+
+const auth = firebase.auth();
+const firestore = firebase.firestore();
+
+const [user] = useAuthState(auth);
+
+return (
+       <div className="App">
+        <header>
+       </header>
+       <section>
+        {user ? <ChatRoom /> : SignIn />}
+       </section>
+  </div>
+ );
+}
+
+function SignIn() {
+       const signInWithGoogle = () => {
+              const provider = new firebase.auth.GoogleAuthProvider();
+              auth.signInWithPopup(provider);
+              }
+
+return(
+       <button onClick={signInWithGoogle}>Sign in with Google</button>
+       )
+
+}
+       
+function ChatRoom() {}
+
+export default App,
